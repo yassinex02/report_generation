@@ -11,7 +11,7 @@ This is a simple Flask web application for generating customized PDF reports. Th
 
 ## Requirements
 
-- Python 3.x
+- Python 3.9.17 version
 - Flask
 - Pandas
 - PyPDF2

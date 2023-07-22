@@ -2,58 +2,134 @@
 <html>
 <head>
     <title>Filter Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        select, input[type="date"], input[type="submit"] {
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        #dateSelection, #weeklySelection, #monthlySelection {
+            width: 100%;
+            display: none;
+        }
+
+        /* Additional styles for a more attractive select dropdown */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url('https://cdn.iconscout.com/icon/free/png-256/down-arrow-1767504-1502407.png') no-repeat right center / 20px;
+            padding-right: 40px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Select Filters</h1>
-    <form action="/result" method="POST">
-        <label for="product">Product:</label>
-        <select name="product" id="product">
-            <option value="PB1">PB1</option>
-            <option value="PB2">PB2</option>
-        </select>
-        <br><br>
-        <label for="frequency">Frequency:</label>
-        <select name="frequency" id="frequency">
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-            <option value="yearly">Yearly</option>
-        </select>
-        <br><br>
-        <div id="dateSelection" style="display: none;">
-            <label for="selected_day">Select Day:</label>
-            <input type="date" name="selected_day">
-            <br><br>
-        </div>
-        <div id="weeklySelection" style="display: none;">
-            <label for="selected_start_date">Select Start Date:</label>
-            <input type="date" name="selected_start_date">
-            <br><br>
-            <label for="selected_end_date">Select End Date:</label>
-            <input type="date" name="selected_end_date">
-            <br><br>
-        </div>
-        <div id="monthlySelection" style="display: none;">
-            <label for="selected_month">Select Month:</label>
-            <select name="selected_month">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
+    <header>
+        <h1>Performance Tracking</h1>
+    </header>
+    <div class="container">
+        <form action="/result" method="POST">
+            <label for="product">Product:</label>
+            <select name="product" id="product">
+                <option value="PB1">PB1</option>
+                <option value="PB2">PB2</option>
             </select>
-            <br><br>
-        </div>
-        <input type="submit" value="Generate Report">
-    </form>
 
+            <label for="frequency">Frequency:</label>
+            <select name="frequency" id="frequency">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+
+            <div id="dateSelection">
+                <label for="selected_day">Select Day:</label>
+                <input type="date" name="selected_day">
+            </div>
+
+            <div id="weeklySelection">
+                <label for="selected_start_date">Select Start Date:</label>
+                <input type="date" name="selected_start_date">
+
+                <label for="selected_end_date">Select End Date:</label>
+                <input type="date" name="selected_end_date">
+            </div>
+
+            <div id="monthlySelection">
+                <label for="selected_month">Select Month:</label>
+                <select name="selected_month">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Generate Report">
+        </form>
+    </div>
     <script>
         // Show/hide additional input based on frequency selection
         const frequencySelect = document.getElementById('frequency');

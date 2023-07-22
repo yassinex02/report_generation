@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, Response
+from flask import Flask, render_template, request, Response
 from customise_template import customise
 from functions import save_filters_to_json, filtering
 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filter Selection</title>
+</head>
+<body>
+    <h1>Select Filters</h1>
+    <form action="/result" method="POST">
+        <label for="product">Product:</label>
+        <select name="product" id="product">
+            <option value="PB1">PB1</option>
+            <option value="PB2">PB2</option>
+        </select>
+        <br><br>
+        <label for="frequency">Frequency:</label>
+        <select name="frequency" id="frequency">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+        </select>
+        <br><br>
+        <div id="dateSelection" style="display: none;">
+            <label for="selected_day">Select Day:</label>
+            <input type="date" name="selected_day">
+            <br><br>
+        </div>
+        <div id="weeklySelection" style="display: none;">
+            <label for="selected_start_date">Select Start Date:</label>
+            <input type="date" name="selected_start_date">
+            <br><br>
+            <label for="selected_end_date">Select End Date:</label>
+            <input type="date" name="selected_end_date">
+            <br><br>
+        </div>
+        <div id="monthlySelection" style="display: none;">
+            <label for="selected_month">Select Month:</label>
+            <select name="selected_month">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+            <br><br>
+        </div>
+        <input type="submit" value="Generate Report">
+    </form>
+
+    <script>
+        // Show/hide additional input based on frequency selection
+        const frequencySelect = document.getElementById('frequency');
+        const dateSelection = document.getElementById('dateSelection');
+        const weeklySelection = document.getElementById('weeklySelection');
+        const monthlySelection = document.getElementById('monthlySelection');
+
+        frequencySelect.addEventListener('change', function() {
+            if (this.value === 'daily') {
+                dateSelection.style.display = 'block';
+                weeklySelection.style.display = 'none';
+                monthlySelection.style.display = 'none';
+            } else if (this.value === 'weekly') {
+                dateSelection.style.display = 'none';
+                weeklySelection.style.display = 'block';
+                monthlySelection.style.display = 'none';
+            } else if (this.value === 'monthly') {
+                dateSelection.style.display = 'none';
+                weeklySelection.style.display = 'none';
+                monthlySelection.style.display = 'block';
+            } else {
+                dateSelection.style.display = 'none';
+                weeklySelection.style.display = 'none';
+                monthlySelection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

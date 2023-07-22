@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, Response
 from customise_template import customise
 from functions import save_filters_to_json, filtering
 
@@ -30,14 +30,14 @@ def result():
         save_filters_to_json(product, frequency)
     filtering()
     pdf_filename = customise()
-    return render_template('result.html', pdf_filename=pdf_filename)
 
+    with open(pdf_filename, 'rb') as file:
+        pdf_content = file.read()
 
-@app.route('/download_pdf')
-def download_pdf():
-    filtering()
-    report = customise()
-    return send_file(report, as_attachment=True)
+    response = Response(pdf_content, content_type='application/pdf')
+    response.headers['Content-Disposition'] = f'inline; filename={pdf_filename}'
+
+    return response
 
 
 if __name__ == '__main__':
